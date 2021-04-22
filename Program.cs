@@ -128,7 +128,7 @@ namespace JurassicPark
             {
                 Console.WriteLine();
                 Console.WriteLine("What do you want to do?");
-                Console.Write("(A)dd -- (S)how -- (U)pdate -- (Q)uit -- (R)emove ");
+                Console.Write("(A)dd -- (S)how -- (T)ransfer -- (C)ount -- (R)emove -- (Q)uit ");
                 var choice = Console.ReadLine().ToUpper();
 
                 switch (choice)
@@ -175,6 +175,7 @@ namespace JurassicPark
 
                             }
                         }
+
                         break;
 
                     //Removing a Dinosaur
@@ -193,7 +194,7 @@ namespace JurassicPark
                         break;
 
                     // Updating enclosure number for a dinosaur
-                    case "U":
+                    case "T":
                         var dinoToUpdate = AskForString("Who's enclosure do you want to change?: ");
                         Dinosaur updateDinosaur = database.SearchDinosaurs(dinoToUpdate);
 
@@ -209,21 +210,14 @@ namespace JurassicPark
                         }
                         break;
 
-                        // Counting Herbivores & Carnivores
-                        // case "C":
-                        //     var countDinosaurs = database.GetAllDinosaurs();
-                        //     char ch = 'c';
-                        //     int freq = countDinosaurs.Where(x => (x == ch)).Count();
-                        //     Console.WriteLine(freq);
+                    // Counting Herbivores & Carnivores
+                    case "C":
+                        var countDinosaurs = database.GetAllDinosaurs();
+                        int howManyHerbivores = countDinosaurs.Count(dinosaur => dinosaur.DietType == "Herbivore");
+                        Console.WriteLine($"Herbivores Count: {howManyHerbivores}");
 
-
-                        // foreach (var dinosaursToShow in countDinosaurs)
-                        // {
-
-                        //     int freq = countDinosaurs.Where(x => (x == carnivore)).Count();
-                        //     Console.WriteLine(freq);
-                        // }
-
+                        int howManyCarnivores = countDinosaurs.Count(dinosaur => dinosaur.DietType == "Carnivore");
+                        Console.WriteLine($"Carnivore Count:  {howManyCarnivores}");
 
                         break;
 
